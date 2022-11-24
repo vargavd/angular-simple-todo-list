@@ -6,7 +6,12 @@
         <label for="name" class="form-label">
           Name
         </label>
-        <input class="form-control" id="name" [(ngModel)]="newTodoName" (input)="inputHandler($event)"/>
+        <input 
+          [ngClass]="{'form-control': true, missing: newTodoName === '' && inputChangedAlready}"
+          id="name" 
+          [(ngModel)]="newTodoName" 
+          (input)="inputHandler($event)"
+        />
       </div>
       <div class="mb-3">
         <label class="form-label">Priority</label>
@@ -25,7 +30,7 @@
         </div>
       </div>
 
-      <button class="btn btn-primary mt-3">
+      <button class="btn btn-primary mt-3" [disabled]="newTodoName === ''" (click)="addNewTodo()">
         <i class="bi bi-plus-square me-1"></i>
         Add
       </button>
@@ -34,25 +39,17 @@
       <h2>Todos</h2>
 
       <ul class="list-group todo-list">
-        <li class="list-group-item low">
+        <li class="list-group-item low" *ngFor="let lowTodo of lowTodos">
           <i class="bi bi-brightness-alt-low"></i>
-          Low Todo 1
+          {{lowTodo}}
         </li>
-        <li class="list-group-item low">
-          <i class="bi bi-brightness-alt-low"></i>
-          Low Todo 2
-        </li>
-        <li class="list-group-item medium">
+        <li class="list-group-item medium" *ngFor="let mediumTodo of mediumTodos">
           <i class="bi bi-check"></i>
-          Medium Todo
+          {{mediumTodo}}
         </li>
-        <li class="list-group-item high">
+        <li class="list-group-item high" *ngFor="let highTodo of highTodos">
           <i class="bi bi-lightning-charge"></i>
-          High Todo
-        </li>
-        <li class="list-group-item high">
-          <i class="bi bi-lightning-charge"></i>
-          High Todo
+          {{highTodo}}
         </li>
       </ul>
     </div>
