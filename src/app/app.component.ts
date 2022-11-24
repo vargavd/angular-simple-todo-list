@@ -6,5 +6,25 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'section-2-practise-todo-list';
+  // PRIVATE VARIABLES
+  newTodoName: string = '';
+  newTodoPriority: string = 'Low';
+
+  // helper funcs
+  getPriorityButtonClass(priority:string) {
+    return { 
+      'btn': true,
+      'btn-primary': this.newTodoPriority === priority ,
+      'btn-outline-primary': this.newTodoPriority !== priority
+    };
+  };
+
+  // UI EVENT HANDLERS
+  inputHandler($event:InputEvent) {
+    console.log(($event.target as HTMLInputElement).value);
+  };
+  prioritySelected(priority:string) {
+    this.newTodoPriority = priority;
+  };
+
 }

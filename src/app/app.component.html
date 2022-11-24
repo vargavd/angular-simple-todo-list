@@ -3,18 +3,24 @@
     <div class="col">
       <h2>Adding Todo</h2>
       <div class="mb-3">
-        <label for="name" class="form-label">Name</label>
-        <input class="form-control" id="name" />
+        <label for="name" class="form-label">
+          Name
+        </label>
+        <input class="form-control" id="name" [(ngModel)]="newTodoName" (input)="inputHandler($event)"/>
       </div>
       <div class="mb-3">
         <label class="form-label">Priority</label>
         <div class="input-group">
           <div class="btn-group" role="group" aria-label="Basic example">
-            <button type="button" class="btn btn-primary">Low</button>
-            <button type="button" class="btn btn-outline-primary">
+            <button type="button" [ngClass]="getPriorityButtonClass('Low')" (click)="prioritySelected('Low')">
+              Low
+            </button>
+            <button type="button" [ngClass]="getPriorityButtonClass('Medium')" (click)="prioritySelected('Medium')">
               Medium
             </button>
-            <button type="button" class="btn btn-outline-primary">High</button>
+            <button type="button" [ngClass]="getPriorityButtonClass('High')" (click)="prioritySelected('High')">
+              High
+            </button>
           </div>
         </div>
       </div>
